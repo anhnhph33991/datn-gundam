@@ -16,23 +16,10 @@
             <li class="menu-title" key="t-administration">Administration</li>
 
             <li>
-                <a href="javascript: void(0);" class="has-arrow waves-effect">
-                    <i class="bx bx-receipt"></i>
-                    <span key="t-maps">Categories</span>
+                <a href="{{ route('admin.categories.index') }}" class="waves-effect">
+                    <i class="bx bx-home-circle"></i>
+                    <span key="t-categories">Categories</span>
                 </a>
-                <ul class="sub-menu" aria-expanded="false">
-                    <li class="{{ activeMenuLi('admin/categories') }}">
-                        <a href="{{ route('admin.categories.index') }}" key="t-g-categories">
-                            Categories
-                        </a>
-                    </li>
-                    <li class="{{ activeMenuLi('admin/sub-categories') }}">
-                        <a href="{{ route('admin.sub-categories.index') }}" key="t-v-maps"
-                            class="{{ activeMenu('admin/sub-categories') }}">
-                            SubCategories
-                        </a>
-                    </li>
-                </ul>
             </li>
 
             <li class="{{ activeMenuLi('admin/users') }}">

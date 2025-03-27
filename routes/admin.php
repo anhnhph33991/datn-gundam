@@ -8,5 +8,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DashBoardController::class, 'index'])->name('dashboard');
 Route::resource('categories', CategoryController::class);
-Route::resource('sub-categories', SubCategoryController::class);
 Route::resource('users', UserController::class);
