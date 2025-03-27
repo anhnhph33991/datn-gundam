@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use App\Services\ProductService;
-use App\Traits\ApiRequestJsonTrait;
 use App\Traits\ApiResponseTrait;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class ProductController extends Controller
@@ -20,6 +17,7 @@ class ProductController extends Controller
     }
     /**
      *  Lấy ra top 5 sản phẩn nổi bật
+     *  /api/getTopProducts
      */
     public function getTopProducts()
     {
@@ -32,6 +30,7 @@ class ProductController extends Controller
     }
     /**
      *  Danh sách sản phẩm
+     *  /api/getPagination
      */
     public function getPagination()
     {
@@ -44,6 +43,7 @@ class ProductController extends Controller
     }
     /**
      *  Chi tiết sản phẩm
+     *  /api/{slug}/productDetail
      */
     public function productDetail(string $slug)
     {
