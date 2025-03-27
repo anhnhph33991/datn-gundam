@@ -43,7 +43,7 @@
                     <li>
                         <a href="javascript: void(0);" class="has-arrow" key="t-level-1-2">Variants</a>
                         <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="#" key="t-level-2-1">Colors</a></li>
+                            <li><a href="{{ route('admin.product-colors.index') }}" key="t-level-2-1">Colors</a></li>
                             <li><a href="{{ route('admin.product-sizes.index') }}" key="t-level-2-2">Sizes</a></li>
                         </ul>
                     </li>
