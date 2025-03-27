@@ -27,7 +27,8 @@
                         </a>
                     </li>
                     <li class="{{ activeMenuLi('admin/sub-categories') }}">
-                        <a href="#" key="t-v-maps" class="{{ activeMenu('admin/sub-categories') }}">
+                        <a href="{{ route('admin.sub-categories.index') }}" key="t-v-maps"
+                            class="{{ activeMenu('admin/sub-categories') }}">
                             SubCategories
                         </a>
                     </li>
