@@ -51,7 +51,7 @@
             </li>
 
             <li class="{{ activeMenuLi('admin/comments') }}">
-                <a href="#" class="waves-effect">
+                <a href="{{ route('admin.comments.index') }}" class="waves-effect">
                     <i class="bx bx-receipt"></i>
                     <span key="t-comments">Comments</span>
                 </a>
