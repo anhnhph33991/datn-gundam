@@ -22,7 +22,7 @@
                 </a>
                 <ul class="sub-menu" aria-expanded="false">
                     <li class="{{ activeMenuLi('admin/categories') }}">
-                        <a href="#" key="t-g-categories">
+                        <a href="{{ route('admin.categories.index') }}" key="t-g-categories">
                             Categories
                         </a>
                     </li>
@@ -40,13 +40,6 @@
                     <span key="t-users">Users</span>
                 </a>
             </li>
-
-            {{-- <li class="{{ activeMenuLi('admin/products') }}">
-            <a href="{{ route('admin.products.index') }}" class="waves-effect">
-                <i class="bx bx-receipt"></i>
-                <span key="t-products">Products</span>
-            </a>
-            </li> --}}
 
             <li>
                 <a href="javascript: void(0);" class="has-arrow waves-effect">
