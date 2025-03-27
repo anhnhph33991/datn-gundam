@@ -50,11 +50,6 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function subCategory()
-    {
-        return $this->belongsTo(SubCategory::class);
-    }
-
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
