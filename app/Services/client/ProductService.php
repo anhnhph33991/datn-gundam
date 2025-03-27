@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Services;
-
-use App\Models\Category;
+namespace App\Services\Client;
 use App\Models\Product;
-use Illuminate\Support\Str;
 
 class ProductService
 {
