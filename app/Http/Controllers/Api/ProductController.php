@@ -17,7 +17,7 @@ class ProductController extends Controller
     }
     /**
      *  Lấy ra top 5 sản phẩn nổi bật
-     *  /api/getTopProducts
+     *  /api/v1/getTopProducts
      */
     public function getTopProducts()
     {
@@ -30,7 +30,7 @@ class ProductController extends Controller
     }
     /**
      *  Danh sách sản phẩm
-     *  /api/getPagination
+     *  /api/v1/getPagination
      */
     public function getPagination()
     {
@@ -43,7 +43,7 @@ class ProductController extends Controller
     }
     /**
      *  Chi tiết sản phẩm
-     *  /api/{slug}/productDetail
+     *  /api/v1/{slug}/productDetail
      */
     public function productDetail(string $slug)
     {
