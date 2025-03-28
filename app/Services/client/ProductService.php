@@ -8,7 +8,14 @@ class ProductService
 {
     public function getTopService(string $limit)
     {
-        return Product::with(['category', 'tags', 'galleries', 'variants'])
+        return Product::with([
+            'category.products',
+            'tags',
+            'galleries',
+            'variants.product',
+            'variants.size',
+            'variants.color'
+        ])
             ->where([['is_hot_deal', 1], ['is_active', 1]])
             ->latest('id')
             ->limit($limit)
@@ -17,7 +24,14 @@ class ProductService
 
     public function getPaginationService($perpage = 15)
     {
-        return Product::with(['category', 'tags', 'galleries', 'variants'])
+        return Product::with([
+            'category.products',
+            'tags',
+            'galleries',
+            'variants.product',
+            'variants.size',
+            'variants.color'
+        ])
             ->where([['is_hot_deal', 1], ['is_active', 1]])
             ->latest('id')
             ->paginate($perpage);
@@ -25,8 +39,15 @@ class ProductService
 
     public function getDetailService(string $slug)
     {
-        return Product::with(['category.products', 'tags', 'galleries', 'variants'])
-            ->where('slug',$slug)
+        return Product::with([
+            'category.products',
+            'tags',
+            'galleries',
+            'variants.product',
+            'variants.size',
+            'variants.color'
+        ])
+            ->where('slug', $slug)
             ->firstOrFail();
     }
 }
