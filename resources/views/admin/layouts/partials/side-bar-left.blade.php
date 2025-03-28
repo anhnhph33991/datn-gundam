@@ -36,7 +36,7 @@
                 </a>
                 <ul class="sub-menu" aria-expanded="true">
                     <li>
-                        <a href="#" key="t-level-1-1">
+                        <a href="{{ route('admin.products.index') }}" key="t-level-1-1">
                             List Product
                         </a>
                     </li>
