@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class)->constrained();
-            $table->foreignIdFor(model: ProductSize::class)->constrained();
+            $table->foreignIdFor(ProductSize::class)->constrained();
             $table->foreignIdFor(ProductColor::class)->constrained();
             $table->unsignedInteger('quatity')->default(0);
             $table->string('image', 255)->nullable();
