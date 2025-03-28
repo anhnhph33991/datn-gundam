@@ -16,7 +16,7 @@ class CheckAuthCart
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check()) {
+        if ($request->user()) {
             return $next($request);
         }
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
+    
     //Đăng xuất
     Route::post('/logout', [AuthController::class, 'logout']);
+    
+    // Add to cart
+    Route::prefix('carts')->middleware('CheckAuthCart')->group(function () {
+        Route::get('/',         [CartController::class, 'index']);
+        Route::post('/',        [CartController::class, 'store']);
+        Route::put('/{id}',     [CartController::class, 'update']);
+        Route::delete('/{id}',  [CartController::class, 'destroy']);
+    });
     
 });
 
