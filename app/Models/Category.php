@@ -16,4 +16,7 @@ class Category extends Model
         "status",
         "is_active",
     ];
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

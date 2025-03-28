@@ -24,7 +24,7 @@ class ProductService
 
     public function getDetailService(string $slug)
     {
-        return Product::with(['category', 'tags', 'galleries', 'variants'])
+        return Product::with(['category.products', 'tags', 'galleries', 'variants'])
             ->where('slug',$slug)
             ->firstOrFail();
     }
