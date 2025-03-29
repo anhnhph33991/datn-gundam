@@ -122,3 +122,10 @@ if (!function_exists('getCountCart')) {
         $total = count(session('cart'));
     }
 }
+
+if (!function_exists('calSubTotal')) {
+    function calSubTotal($quantity, $price)
+    {
+        return formatPrice($quantity * $price);
+    }
+}

@@ -108,6 +108,7 @@ class ProductController extends Controller
         $dataProduct['is_new'] ??= 0;
         $dataProduct['is_show_home'] ??= 0;
         $dataProduct['slug'] = Str::slug($dataProduct['name']) . '-' . Str::ulid();
+        $dataProduct['price_sale'] ??= 0;
 
         if ($request->hasFile('product.thumb_image')) {
             $dataProduct['thumb_image'] = Storage::put('products', $dataProduct['thumb_image']);

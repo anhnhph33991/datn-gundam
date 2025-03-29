@@ -65,7 +65,7 @@
             </li>
 
             <li>
-                <a href="#" class="waves-effect">
+                <a href="{{ route('admin.orders.index') }}" class="waves-effect">
                     <span class="badge rounded-pill bg-danger float-end" key="t-hot">2</span>
                     <i class="bx bx-receipt"></i>
                     <span key="t-orders">Orders</span>

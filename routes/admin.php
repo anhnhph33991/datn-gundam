@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\DashBoardController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductSizeController;
@@ -21,3 +22,7 @@ Route::resource('product-sizes', ProductSizeController::class);
 Route::resource('product-colors', ProductColorController::class);
 
 Route::resource('tags', TagController::class);
+
+Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+Route::get('orders/{order}', [OrderController::class, 'edit'])->name('orders.edit');
+Route::put('orders/{order}', [OrderController::class, 'update'])->name('orders.update');
