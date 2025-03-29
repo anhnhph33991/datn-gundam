@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper\Toastr;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserVoucherRequest;
 use App\Models\User;
@@ -17,7 +18,7 @@ class UserVoucherController extends Controller
     {
 
         $User_vouchers = UserVoucher::with(['user', 'voucher'])->latest('id')->paginate(10);
-        
+
         return view('admin.user_vouchers.index', compact('User_vouchers'));
     }
 
@@ -43,7 +44,7 @@ class UserVoucherController extends Controller
         try {
             $data = $request->validated();
 
-    
+
             if (!empty($data['user_ids']) && is_array($data['user_ids'])) {
                 $insertData = [];
                 $userIds = [];
@@ -65,7 +66,8 @@ class UserVoucherController extends Controller
 
                     $vouchers = UserVoucher::insert($insertData);
 
-                    return redirect()->route('admin.user-vouchers.index')->with('success', 'Thêm mới User Voucher thành công!');
+                    Toastr::success('', 'Thêm mới User Voucher thành công!');
+                    return redirect()->route('admin.user-vouchers.index');
                 } else {
                     return redirect()->back()->with('error', 'Tất cả người dùng đã nhận voucher này.');
                 }

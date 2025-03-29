@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper\Toastr;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Voucher;
@@ -50,7 +51,9 @@ class VoucherController extends Controller
 
             session()->forget('voucher_code');
 
-            return redirect()->route('admin.vouchers.index')->with('success', 'Thêm mới mã giảm giá thành công!');
+            Toastr::success('', 'Thêm mới mã giảm giá thành công!');
+
+            return redirect()->route('admin.vouchers.index');
         } catch (\Throwable $th) {
 
             session()->flash('voucher_code', $request->code);
