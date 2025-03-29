@@ -69,97 +69,57 @@ use App\Models\Order;
                 </form>
 
                 <div class="">
+
+                    @php
+                    $orderStatus = [
+                    'pending' => [
+                    'title' => 'Chờ xác nhận',
+                    'description' => 'New common language will be more simple and regular than the existing.',
+                    'icon' => 'bx-copy-alt'
+                    ],
+                    'confirmed' => [
+                    'title' => 'Đã xác nhận',
+                    'description' => 'To achieve this, it would be necessary to have uniform grammar.',
+                    'icon' => 'bx-badge-check'
+                    ],
+                    'preparing_goods' => [
+                    'title' => 'Đang chuẩn bị hàng',
+                    'description' => 'To an English person, it will seem like simplified English.',
+                    'icon' => 'bx-package'
+                    ],
+                    'shipping' => [
+                    'title' => 'Đang vận chuyển',
+                    'description' => 'It will be as simple as Occidental in fact, it will be Occidental.',
+                    'icon' => 'bx-car'
+                    ],
+                    'delivered' => [
+                    'title' => 'Đã giao hàng',
+                    'description' => 'To an English person, it will seem like simplified English.',
+                    'icon' => 'bx-badge-check'
+                    ],
+                    ];
+
+                    $currentStatus = $order->status_order;
+                    @endphp
                     <ul class="verti-timeline list-unstyled">
-                        <li class="event-list">
+                        @foreach ($orderStatus as $key => $status)
+                        <li class="event-list {{ $key === $currentStatus ? 'active' : '' }}">
                             <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle"></i>
+                                <i class="bx bx-right-arrow-circle {{ $key === $currentStatus ? 'bx-fade-right' : '' }}"></i>
                             </div>
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
-                                    <i class="bx bx-copy-alt h2 text-primary"></i>
+                                    <i class="bx {{ $status['icon'] }} h2 text-primary"></i>
                                 </div>
                                 <div class="flex-grow-1">
                                     <div>
-                                        <h5>Chờ xác nhận</h5>
-                                        <p class="text-muted">New common language will be more
-                                            simple and regular than the existing.</p>
-
+                                        <h5>{{ $status['title'] }}</h5>
+                                        <p class="text-muted">{{ $status['description'] }}</p>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="event-list">
-                            <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle"></i>
-                            </div>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <i class="bx bx-badge-check h2 text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div>
-                                        <h5>Đã xác nhận</h5>
-                                        <p class="text-muted">To achieve this, it would be necessary
-                                            to have uniform grammar.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="event-list">
-                            <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle"></i>
-                            </div>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <i class="bx bx-package h2 text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div>
-                                        <h5>Đang chuẩn bị hàng</h5>
-                                        <p class="text-muted">To an English person, it will seem
-                                            like simplified English.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="event-list active">
-                            <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle bx-fade-right"></i>
-                            </div>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <i class="bx bx-car h2 text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div>
-                                        <h5>Đang vận chuyển</h5>
-                                        <p class="text-muted">It will be as simple as Occidental in
-                                            fact, it will be Occidental..</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="event-list">
-                            <div class="event-timeline-dot">
-                                <i class="bx bx-right-arrow-circle"></i>
-                            </div>
-                            <div class="d-flex">
-                                <div class="flex-shrink-0 me-3">
-                                    <i class="bx bx-badge-check h2 text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <div>
-                                        <h5>Đã giao hàng</h5>
-                                        <p class="text-muted">To an English person, it will seem
-                                            like simplified English.</p>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
