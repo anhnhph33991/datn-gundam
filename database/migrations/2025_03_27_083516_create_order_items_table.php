@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('product_name');
             $table->string('product_sku');
             $table->string('product_img_thumbnail')->nullable();
-            $table->double('product_price_regular');
-            $table->double('product_price_sale')->nullable();
+            $table->decimal('product_price_regular',20,0)->default(0);
+            $table->decimal('product_price_sale',20,0)->default(0);
 
             $table->string('variant_size_name');
             $table->string('variant_color_name');

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+
     //Đăng xuất
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     // Add to cart
     Route::prefix('carts')->middleware('CheckAuthCart')->group(function () {
         Route::get('/',         [CartController::class, 'index']);
@@ -29,8 +30,15 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/{id}',     [CartController::class, 'update']);
         Route::delete('/{id}',  [CartController::class, 'destroy']);
     });
-    
+    // Order
+    Route::prefix('orders')->middleware('CheckAuthCart')->group(function () {
+        
+        Route::post('/',        [OrderController::class, 'store']);
+
+    });
 });
+
+Route::get('/checkout', [OrderController::class, 'checkout']);
 
 // Tạo tài khoản 
 Route::post('/signUp', [AuthController::class, 'signUp']);
