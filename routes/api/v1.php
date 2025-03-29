@@ -22,6 +22,8 @@ Route::middleware('auth:sanctum')->group(function () {
     
 });
 
+Route::get('/products', [ProductController::class, 'index']);
+
 // Tạo tài khoản 
 Route::post('/signUp', [AuthController::class, 'signUp']);
 

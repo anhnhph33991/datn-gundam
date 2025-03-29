@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\ProductColor;
+use App\Models\ProductSize;
 use App\Services\Client\ProductService;
 
 use App\Traits\ApiResponseTrait;
@@ -29,6 +30,19 @@ class ProductController extends Controller
             'Thao tác thành công !!!',
             Response::HTTP_OK
         );
+    }
+    public function index()
+    {
+
+        $productColor = ProductColor::query()->latest('id')->select(['id', 'name'])->get();
+        $productSize = ProductSize::query()->latest('id')->select(['id', 'name'])->get();
+
+        return response()->json([
+            'data' => [
+                'productColors' => $productColor,
+                'productSizes' => $productSize,
+            ]
+        ], Response::HTTP_OK);
     }
     /**
      *  Danh sách sản phẩm
@@ -56,6 +70,4 @@ class ProductController extends Controller
             Response::HTTP_OK
         );
     }
-
-
 }
