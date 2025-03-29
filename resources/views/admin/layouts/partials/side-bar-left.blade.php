@@ -17,15 +17,15 @@
 
             <li>
                 <a href="{{ route('admin.categories.index') }}" class="waves-effect">
-                    <i class="bx bx-home-circle"></i>
-                    <span key="t-categories">Categories</span>
+                    <i class="fas fa-list"></i>
+                    <span key="t-categories">Quản lý danh mục</span>
                 </a>
             </li>
 
             <li class="{{ activeMenuLi('admin/users') }}">
                 <a href="{{ route('admin.users.index') }}" class="waves-effect {{ activeMenu('admin/users') }}">
                     <i class="bx bx-user"></i>
-                    <span key="t-users">Users</span>
+                    <span key="t-users">Quản lý tài khoản</span>
                 </a>
             </li>
 
@@ -49,18 +49,35 @@
                     </li>
                 </ul>
             </li>
-
+            <li>
+                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                    <i class="fas fa-receipt"></i>
+                    <span key="t-multi-level">Mã giảm giá</span>
+                </a>
+                <ul class="sub-menu" aria-expanded="true">
+                    <li>
+                        <a href="{{ route('admin.vouchers.index') }}" key="t-level-1-1">
+                            Quản lý voucher
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.user-vouchers.index') }}" key="t-level-1-1">
+                            Quản lý user voucher 
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li>
                 <a href="{{ route('admin.tags.index') }}" class="waves-effect">
-                    <i class="bx bx-receipt"></i>
-                    <span key="t-tags">Tags</span>
+                    <i class="fas fa-bookmark"></i>
+                    <span key="t-tags">Quản lý thẻ</span>
                 </a>
             </li>
 
             <li class="{{ activeMenuLi('admin/comments') }}">
                 <a href="{{ route('admin.comments.index') }}" class="waves-effect">
                     <i class="bx bx-receipt"></i>
-                    <span key="t-comments">Comments</span>
+                    <span key="t-comments">Quản lý bình luận</span>
                 </a>
             </li>
 
@@ -69,20 +86,6 @@
                     <span class="badge rounded-pill bg-danger float-end" key="t-hot">2</span>
                     <i class="bx bx-receipt"></i>
                     <span key="t-orders">Orders</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="waves-effect">
-                    <i class="bx bx-receipt"></i>
-                    <span key="t-flash-sale">Flash Sale</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="waves-effect">
-                    <i class="bx bx-receipt"></i>
-                    <span key="t-coupons">Coupons</span>
                 </a>
             </li>
 

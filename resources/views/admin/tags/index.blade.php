@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Tags</h4>
+            <h4 class="mb-sm-0 font-size-18">Quản lý thẻ</h4>
         </div>
     </div>
 </div>
@@ -25,9 +25,9 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="text-sm-end">
-                            <a href="{{ route('admin.tags.create') }}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2 addCustomers-modal">
+                            <a href="{{ route('admin.tags.create') }}" class="btn btn-success waves-effect waves-light mb-2 me-2 addCustomers-modal">
                                 <i class="mdi mdi-plus me-1"></i>
-                                Thêm mới
+                                Thêm
                             </a>
                         </div>
                     </div><!-- end col-->
@@ -35,14 +35,14 @@
 
 
                 <div class="table-responsive min-vh-100">
-                    <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
-                        <thead class="table-light">
+                    <table class="table align-middle table-nowrap dt-responsive text-center nowrap w-100">
+                        <thead class="">
                             <tr>
-                                <th>#</th>
+                                <th>STT</th>
                                 <th>Name</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
-                                <th>Action</th>
+                                <th>Thời gian tạo</th>
+                                <th>Thời gian cập nhật</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
 
@@ -50,9 +50,8 @@
 
                             @foreach ($tags as $tag)
                             <tr>
-                                <td class="dtr-control sorting_1" tabindex="0">
-                                    <div class="d-none">{{ $tag->id }}</div>
-                                    <div class="form-check font-size-16"> <input class="form-check-input" type="checkbox" id="customerlistcheck-{{ $tag->id }}"> <label class="form-check-label" for="customerlistcheck-{{ $tag->id }}"></label> </div>
+                                <td>
+                                    {{$loop->iteration}}
                                 </td>
 
                                 <td>
@@ -60,37 +59,27 @@
                                 </td>
 
                                 <td>
-                                    {{ $tag->created_at }}
+                                    {{ $tag->created_at->format('d/m/Y h:i:s') }}
                                 </td>
 
                                 <td>
-                                    {{ $tag->updated_at }}
+                                    {{ $tag->updated_at->format('d/m/Y h:i:s') }}
                                 </td>
 
                                 <td>
-                                    <div class="dropdown">
-                                        <a href="#" class="dropdown-toggle card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="mdi mdi-dots-horizontal font-size-18"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end" style="">
-                                            <li>
-                                                <a href="{{ route('admin.tags.edit', $tag) }}" class="dropdown-item edit-list">
-                                                    <i class="mdi mdi-pencil font-size-16 text-success me-1"></i>
-                                                    Edit
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{$tags->links()}}
                 </div>
 
-                <div class="row">
-                    {{ $tags->links('admin.layouts.components.pagination') }}
-                </div>
+               
 
             </div>
         </div>

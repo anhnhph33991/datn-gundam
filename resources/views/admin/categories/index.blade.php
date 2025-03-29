@@ -4,12 +4,12 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Categories</h4>
+                <h4 class="mb-sm-0 font-size-18">Quản lý danh mục</h4>
 
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         {{-- <li class="breadcrumb-item"><a href="javascript: void(0);">Categories</a></li> --}}
-                        <li class="breadcrumb-item active">Categories</li>
+                        <li class="breadcrumb-item active">Danh mục</li>
                     </ol>
                 </div>
 
@@ -34,25 +34,25 @@
                         <div class="col-sm-8">
                             <div class="text-sm-end">
                                 <a href="{{ route('admin.categories.create') }}"
-                                    class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2 addCustomers-modal">
+                                    class="btn btn-success waves-effect waves-light mb-2 me-2 addCustomers-modal">
                                     <i class="mdi mdi-plus me-1"></i>
-                                    New Category
+                                    Thêm
                                 </a>
                             </div>
                         </div><!-- end col-->
                     </div>
 
                     <div class="table-responsive min-vh-100">
-                        <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
-                            <thead class="table-light">
+                        <table class="table align-middle text-center table-nowrap dt-responsive nowrap w-100">
+                            <thead class="">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Is_active</th>
-                                    <th>Created_at</th>
-                                    <th>Updated_at</th>
-                                    <th>Action</th>
+                                    <th>STT</th>
+                                    <th>Tên</th>
+                                    <th>Trạng thái</th>
+                                    <th>Hoạt động</th>
+                                    <th>Thời gian tạo</th>
+                                    <th>Thời gian cập nhật</th>
+                                    <th>Chức năng</th>
                                 </tr>
                             </thead>
 
@@ -60,12 +60,8 @@
 
                                 @foreach ($categories as $category)
                                     <tr>
-                                        <td class="dtr-control sorting_1" tabindex="0">
-                                            <div class="d-none">{{ $category->id }}</div>
-                                            <div class="form-check font-size-16"> <input class="form-check-input"
-                                                    type="checkbox" id="customerlistcheck-{{ $category->id }}"> <label
-                                                    class="form-check-label"
-                                                    for="customerlistcheck-{{ $category->id }}"></label> </div>
+                                        <td>
+                                            {{ $loop->iteration }}
                                         </td>
 
                                         <td>
@@ -80,51 +76,31 @@
 
                                         <td>
                                             <span class="badge bg-success font-size-12 p-2">
-                                                {{ $category->is_active ? 'Is Active' : 'No Active' }}
+                                                {{ $category->is_active ? 'Hoạt động' : 'Ngừng hoạt động' }}
                                             </span>
                                         </td>
 
                                         <td>
-                                            {{ $category->created_at }}
+                                            {{ $category->created_at->format('d/m/Y h:i:s') }}
                                         </td>
 
                                         <td>
-                                            {{ $category->updated_at }}
+                                            {{ $category->updated_at->format('d/m/Y h:i:s') }}
                                         </td>
 
                                         <td>
-                                            <div class="dropdown">
-                                                <a href="#" class="dropdown-toggle card-drop"
-                                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i class="mdi mdi-dots-horizontal font-size-18"></i>
-                                                </a>
-                                                <ul class="dropdown-menu dropdown-menu-end" style="">
-                                                    <li>
-                                                        <a href="{{ route('admin.categories.edit', $category) }}"
-                                                            class="dropdown-item edit-list">
-                                                            <i class="mdi mdi-pencil font-size-16 text-success me-1"></i>
-                                                            Edit
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ route('admin.categories.show', $category) }}"
-                                                            class="dropdown-item edit-list">
-                                                            <i class="fa-regular fa-eye font-size-16 text-warning me-1"
-                                                                style="color: #FFD43B;"></i>
-                                                            Show
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <a href="{{ route('admin.categories.edit', $category) }}"
+                                                class="btn btn-warning btn-sm">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
-                    <div class="row">
-                        {{ $categories->links('admin.layouts.components.pagination') }}
-                    </div>
+                        {{ $categories->links() }}
                     <!-- end table responsive -->
                 </div>
                 <!-- end card body -->

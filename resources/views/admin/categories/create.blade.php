@@ -67,17 +67,18 @@
                                             name="is_active">
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-primary w-100">Thêm mới</button>
                             </div>
                             <!-- end card body -->
                         </div>
                     </div>
                     <!-- end col -->
 
-                    <div class="col-lg-8">
+                    {{-- <div class="col-lg-8">
                         <div class="text-end mb-4">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </form>
 
