@@ -49,7 +49,10 @@ const renderTableVariants = (selectedColors, selectedSizes) => {
                 <input type="tel" name="product_variants[${color.id}-${
         size.id
       }][quantity]"
-                min="1" class="form-control quantity-variant-all"></td>
+                min="1" class="form-control quantity-variant-all" value="0" 
+                 oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                  onblur="if(this.value === '') this.value = '0'">
+                </td>
                 <td>
                 <input type="file" name="product_variants[${color.id}-${
         size.id

@@ -43,230 +43,220 @@ use App\Models\Order;
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            {{-- <div class="text-sm-end">
-                                <select name="status_order" id="" class="form-select w-25 waves-effect waves-light mb-2 me-2 addCustomers-modal">
-                                    @php
-                                    $orderStatus = Order::STATUS_ORDER;
-                                    @endphp
+                            <div class="text-sm-end">
 
-                                    @foreach ($orderStatus as $key => $status)
-                                    <option value="{{ $key }}">{{ $status }}</option>
-                            @endforeach
-
-                            </select>
-                        </div> --}}
-
-                        <div class="text-sm-end">
-                            <select name="status_order" id="" class="form-select w-25 waves-effect waves-light mb-2 me-2 addCustomers-modal">
                                 @php
                                 $orderStatus = Order::STATUS_ORDER;
+                                $currentStatusIndex = array_search($order->status_order, array_keys($orderStatus));
                                 @endphp
 
-                                @foreach ($orderStatus as $key => $status)
-                                <option value="{{ $key }}" @if ($order->status_order == $key && in_array($key, ['pending', 'confirmed', 'preparing_goods', 'shipping', 'delivered']))
-                                    @else
-                                    disabled
-                                    @endif
-                                    {{ $order->status_order === $key ? 'selected' : '' }}>
-                                    {{ $status }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
+                                <select name="status_order" class="form-select w-25 waves-effect waves-light mb-2 me-2 addCustomers-modal">
+                                    @foreach ($orderStatus as $key => $status)
+                                    @php
+                                    $statusIndex = array_search($key, array_keys($orderStatus));
+                                    $isDisabled = $statusIndex < $currentStatusIndex; @endphp <option value="{{ $key }}" {{ $order->status_order === $key ? 'selected' : '' }} {{ $isDisabled ? 'disabled' : '' }}>
+                                        {{ $status }}
+                                        </option>
+                                        @endforeach
+                                </select>
 
+
+
+                            </div>
+
+                        </div>
                     </div>
+                </form>
+
+                <div class="">
+                    <ul class="verti-timeline list-unstyled">
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <i class="bx bx-copy-alt h2 text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div>
+                                        <h5>Chờ xác nhận</h5>
+                                        <p class="text-muted">New common language will be more
+                                            simple and regular than the existing.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <i class="bx bx-badge-check h2 text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div>
+                                        <h5>Đã xác nhận</h5>
+                                        <p class="text-muted">To achieve this, it would be necessary
+                                            to have uniform grammar.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <i class="bx bx-package h2 text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div>
+                                        <h5>Đang chuẩn bị hàng</h5>
+                                        <p class="text-muted">To an English person, it will seem
+                                            like simplified English.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list active">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle bx-fade-right"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <i class="bx bx-car h2 text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div>
+                                        <h5>Đang vận chuyển</h5>
+                                        <p class="text-muted">It will be as simple as Occidental in
+                                            fact, it will be Occidental..</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="event-list">
+                            <div class="event-timeline-dot">
+                                <i class="bx bx-right-arrow-circle"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="flex-shrink-0 me-3">
+                                    <i class="bx bx-badge-check h2 text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div>
+                                        <h5>Đã giao hàng</h5>
+                                        <p class="text-muted">To an English person, it will seem
+                                            like simplified English.</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            </form>
+            <!-- end card body -->
+        </div>
 
-            <div class="">
-                <ul class="verti-timeline list-unstyled">
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <i class="bx bx-copy-alt h2 text-primary"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    <h5>Chờ xác nhận</h5>
-                                    <p class="text-muted">New common language will be more
-                                        simple and regular than the existing.</p>
+        <div class="card">
+            <h4 class="mb-sm-0 font-size-18 card-header">Thông tin người dùng</h4>
+            <div class="card-body">
 
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <i class="bx bx-badge-check h2 text-primary"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    <h5>Đã xác nhận</h5>
-                                    <p class="text-muted">To achieve this, it would be necessary
-                                        to have uniform grammar.</p>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
+                        <thead class="table-light">
+                            <tr>
+                                {{-- <th>Ảnh</th> --}}
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Địa chỉ</th>
+                            </tr>
+                        </thead>
 
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <i class="bx bx-package h2 text-primary"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    <h5>Đang chuẩn bị hàng</h5>
-                                    <p class="text-muted">To an English person, it will seem
-                                        like simplified English.</p>
+                        <tbody>
+                            <tr>
+                                {{-- <td>{{ $order->user_name }}</td> --}}
+                                <td>{{ $order->user_name }}</td>
+                                <td>{{ $order->user_email }}</td>
+                                <td>{{ $order->user_phone }}</td>
+                                <td>{{ $order->user_address }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list active">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle bx-fade-right"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <i class="bx bx-car h2 text-primary"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    <h5>Đang vận chuyển</h5>
-                                    <p class="text-muted">It will be as simple as Occidental in
-                                        fact, it will be Occidental..</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="event-list">
-                        <div class="event-timeline-dot">
-                            <i class="bx bx-right-arrow-circle"></i>
-                        </div>
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 me-3">
-                                <i class="bx bx-badge-check h2 text-primary"></i>
-                            </div>
-                            <div class="flex-grow-1">
-                                <div>
-                                    <h5>Đã giao hàng</h5>
-                                    <p class="text-muted">To an English person, it will seem
-                                        like simplified English.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                {{-- <h5>Tên: {{ $order->user_name }}</h5>
+                <h5>Email: {{ $order->user_email }}</h5>
+                <h5>Số điện thoại: {{ $order->user_phone }}</h5>
+                <h5>Địa chỉ: {{ $order->user_address }}</h5> --}}
             </div>
         </div>
-        <!-- end card body -->
-    </div>
 
-    <div class="card">
-        <h4 class="mb-sm-0 font-size-18 card-header">Thông tin người dùng</h4>
-        <div class="card-body">
+        <div class="card">
+            <h4 class="mb-sm-0 font-size-18 card-header">Chi tiết đơn hàng</h4>
+            <div class="card-body">
 
-            <div class="table-responsive">
-                <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
-                    <thead class="table-light">
-                        <tr>
-                            {{-- <th>Ảnh</th> --}}
-                            <th>Tên</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                        </tr>
-                    </thead>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Tên</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Màu</th>
+                                <th>Kích thước</th>
+                                <th>Tổng</th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <tr>
-                            {{-- <td>{{ $order->user_name }}</td> --}}
-                            <td>{{ $order->user_name }}</td>
-                            <td>{{ $order->user_email }}</td>
-                            <td>{{ $order->user_phone }}</td>
-                            <td>{{ $order->user_address }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                        <tbody>
+                            @foreach ($order->orderItems as $orderItem)
+                            <tr>
+                                <td>
+                                    @if(Storage::exists($orderItem->product_img_thumbnail))
+                                    <img src="{{ Storage::url($orderItem->product_img_thumbnail) }}" alt="" style="height: 40px; width: 40px">
+                                    @endif
+                                </td>
 
-            {{-- <h5>Tên: {{ $order->user_name }}</h5>
-            <h5>Email: {{ $order->user_email }}</h5>
-            <h5>Số điện thoại: {{ $order->user_phone }}</h5>
-            <h5>Địa chỉ: {{ $order->user_address }}</h5> --}}
-        </div>
-    </div>
+                                <td>
+                                    {{ limitTextLeng($orderItem->product_name, 10) }}
+                                </td>
 
-    <div class="card">
-        <h4 class="mb-sm-0 font-size-18 card-header">Chi tiết đơn hàng</h4>
-        <div class="card-body">
-
-            <div class="table-responsive">
-                <table class="table align-middle table-nowrap dt-responsive nowrap w-100">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Ảnh</th>
-                            <th>Tên</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Màu</th>
-                            <th>Kích thước</th>
-                            <th>Tổng</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @foreach ($order->orderItems as $orderItem)
-                        <tr>
-                            <td>
-                                @if(Storage::exists($orderItem->product_img_thumbnail))
-                                <img src="{{ Storage::url($orderItem->product_img_thumbnail) }}" alt="" style="height: 40px; width: 40px">
-                                @endif
-                            </td>
-
-                            <td>
-                                {{ limitTextLeng($orderItem->product_name, 10) }}
-                            </td>
-
-                            <td>
-                                {{ formatPrice($orderItem->product_price_sale ?: $orderItem->product_price_regular) }}đ
-                            </td>
-                            <td>
-                                {{ $orderItem->quantity }}
-                            </td>
-                            <td>
-                                {{ $orderItem->variant_color_name }}
-                            </td>
-                            <td>
-                                {{ $orderItem->variant_size_name }}
-                            </td>
-                            <td>
-                                {{ calSubTotal($orderItem->quantity, $orderItem->product_price_sale ?: $orderItem->product_price_regular) }}đ
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                <td>
+                                    {{ formatPrice($orderItem->product_price_sale ?: $orderItem->product_price_regular) }}đ
+                                </td>
+                                <td>
+                                    {{ $orderItem->quantity }}
+                                </td>
+                                <td>
+                                    {{ $orderItem->variant_color_name }}
+                                </td>
+                                <td>
+                                    {{ $orderItem->variant_size_name }}
+                                </td>
+                                <td>
+                                    {{ calSubTotal($orderItem->quantity, $orderItem->product_price_sale ?: $orderItem->product_price_regular) }}đ
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        <!-- end card -->
     </div>
-    <!-- end card -->
-</div>
-<!-- end col -->
+    <!-- end col -->
 </div>
 @endsection

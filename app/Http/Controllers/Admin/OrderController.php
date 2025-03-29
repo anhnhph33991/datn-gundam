@@ -29,13 +29,20 @@ class OrderController extends Controller
     {
         try {
 
-            // if ($request->status_order === 'delivered') {
-            //     $payment = 'paid';
-            // }
+            $payment = 'unpaid';
 
-            $order->update([
+            if ($request->status_order === 'delivered') {
+                $payment = 'paid';
+            }
+
+            $data = [
                 'status_order' => $request->status_order,
-            ]);
+                'status_payment' => $payment
+            ];
+
+            // dd($data);
+
+            $order->update($data);
             Toastr::success('', 'Cập nhật trạng thái thành công');
             return back();
         } catch (\Throwable $th) {
