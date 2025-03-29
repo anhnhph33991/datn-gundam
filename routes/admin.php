@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashBoardController;
 use App\Http\Controllers\Admin\ProductColorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductSizeController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,5 @@ Route::get('comments', [CommentController::class, 'index'])->name('comments.inde
 Route::resource('products', ProductController::class);
 Route::resource('product-sizes', ProductSizeController::class);
 Route::resource('product-colors', ProductColorController::class);
+
+Route::resource('tags', TagController::class);

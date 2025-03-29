@@ -50,6 +50,13 @@
                 </ul>
             </li>
 
+            <li>
+                <a href="{{ route('admin.tags.index') }}" class="waves-effect">
+                    <i class="bx bx-receipt"></i>
+                    <span key="t-tags">Tags</span>
+                </a>
+            </li>
+
             <li class="{{ activeMenuLi('admin/comments') }}">
                 <a href="{{ route('admin.comments.index') }}" class="waves-effect">
                     <i class="bx bx-receipt"></i>
