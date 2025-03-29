@@ -26,7 +26,8 @@ class UpdateProductColorRequest extends FormRequest
             'name' => [
                 'required',
                 Rule::unique('product_colors')->ignore($this->route('product_color')->id)
-            ]
+            ],
+            'code' => 'required'
         ];
     }
 }

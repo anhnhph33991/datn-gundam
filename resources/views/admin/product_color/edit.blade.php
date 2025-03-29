@@ -2,6 +2,9 @@
 @section('title')
 Edit Color {{ $productColor->name }}
 @endsection
+@section('style')
+<link href="{{ asset('assets/theme/admin/libs/spectrum-colorpicker2/spectrum.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 @section('content')
 
 <div class="row">
@@ -38,6 +41,16 @@ Edit Color {{ $productColor->name }}
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Màu sắc</label>
+                            <input type="text" class="form-control" id="colorpicker-default" name="code" value="{{ $productColor->code }}" />
+                            @error('code')
+                            <div class="text-danger fst-italic mt-2">
+                                * {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
                             <button class="btn btn-primary">Submit</button>
                         </div>
                     </div>
@@ -47,4 +60,8 @@ Edit Color {{ $productColor->name }}
 
     </div>
 </div>
+@endsection
+@section('script')
+<script src="{{ asset('assets/theme/admin/libs/spectrum-colorpicker2/spectrum.min.js') }}"></script>
+<script src="{{ asset('assets/theme/admin/js/pages/form-advanced.init.js') }}"></script>
 @endsection

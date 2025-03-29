@@ -44,17 +44,16 @@ class ProductColorController extends Controller
         return view(self::VIEW_PATH . __FUNCTION__, compact('productColor'));
     }
 
-    public function update(UpdateProductColorRequest $request, ProductColor $productColor) {
+    public function update(UpdateProductColorRequest $request, ProductColor $productColor)
+    {
         try {
             $productColor->update($request->validated());
             Toastr::success(null, 'Sửa màu thành công');
-            return redirect()->route('admin.product-colors.index');
+            return back();
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             Alert::error('Lỗi khi sửa', "Luxchill Thông Báo");
             return back();
         }
     }
-
-    
 }

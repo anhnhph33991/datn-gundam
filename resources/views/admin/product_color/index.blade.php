@@ -1,17 +1,10 @@
 @extends('admin.layouts.master')
-@section('title', 'Product Colors')
+@section('title', 'Quản lý màu sắc')
 @section('content')
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0 font-size-18">Product Colors</h4>
-
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item active">Product Colors</li>
-                </ol>
-            </div>
-
+            <h4 class="mb-sm-0 font-size-18">Quản lý màu sắc</h4>
         </div>
     </div>
 </div>
@@ -34,7 +27,7 @@
                         <div class="text-sm-end">
                             <a href="{{ route('admin.product-colors.create') }}" class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2 addCustomers-modal">
                                 <i class="mdi mdi-plus me-1"></i>
-                                New Color
+                                Thêm mới
                             </a>
                         </div>
                     </div><!-- end col-->
@@ -46,10 +39,11 @@
                         <thead class="table-light">
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
-                                <th>Created_at</th>
-                                <th>Updated_at</th>
-                                <th>Action</th>
+                                <th>Tên</th>
+                                <th>Mã màu</th>
+                                <th>Thời gian tạo</th>
+                                <th>Thời gian sửa</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -64,6 +58,10 @@
 
                                 <td>
                                     {{ $color->name }}
+                                </td>
+
+                                <td>
+                                    {{ $color->code }}
                                 </td>
 
                                 <td>
@@ -86,18 +84,6 @@
                                                     Edit
                                                 </a>
                                             </li>
-                                            <li>
-                                                <form action="{{ route('admin.product-colors.destroy', $color) }}" method="POST" id="product-color-form-delete-{{ $color->id }}">
-                                                    @csrf
-                                                    @method("DELETE")
-
-
-                                                    <button type='button' class="dropdown-item remove-list" onclick="handleDelete({{ $color->id }})">
-                                                        <i class="mdi mdi-trash-can font-size-12 text-danger me-1"></i>
-                                                        Delete
-                                                    </button>
-                                                </form>
-                                            </li>
                                         </ul>
                                     </div>
                                 </td>
@@ -115,8 +101,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-    <script src="{{ asset('assets/js/admin/product-color/index.js') }}"></script>
 @endsection
