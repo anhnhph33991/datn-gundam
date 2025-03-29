@@ -28,6 +28,11 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         try {
+
+            // if ($request->status_order === 'delivered') {
+            //     $payment = 'paid';
+            // }
+
             $order->update([
                 'status_order' => $request->status_order,
             ]);
