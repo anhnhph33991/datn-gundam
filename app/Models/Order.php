@@ -15,7 +15,7 @@ class Order extends Model
         'preparing_goods'   => 'Đang chuẩn bị hàng',
         'shipping'          => 'Đang vận chuyển',
         'delivered'         => 'Đã giao hàng',
-        'canceled'          => 'Đơn hàng đã bị hủy',
+        // 'canceled'          => 'Đơn hàng đã bị hủy',
     ];
     public const STATUS_PAYMENT = [
         'unpaid'            => "Chưa thanh toán",
