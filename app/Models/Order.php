@@ -22,6 +22,12 @@ class Order extends Model
         'paid'              => "Đã thanh toán"
     ];
 
+    public const TYPE_PAYMENT = [
+        'vnpay'            => "VNPAY",
+        'momo'             => "MOMO",
+        'pay_delivery'      => "Thanh toán khi nhận hàng"
+    ];
+
     public const STATUS_ORDER_PENDING = 'pending';
     public const STATUS_ORDER_CONFIRMED = 'confirmed';
     public const STATUS_ORDER_PREPARING_GOODS = 'preparing_goods';
@@ -30,6 +36,9 @@ class Order extends Model
     public const STATUS_ORDER_CANCELED = 'canceled';
     public const STATUS_PAYMENT_UNPAID = 'unpaid';
     public const STATUS_PAYMENT_PAID = 'paid';
+    public const TYPE_PAYMENT_VNPAY = 'vnpay';
+    public const TYPE_PAYMENT_MOMO = 'momo';
+    public const TYPE_PAYMENT_PAY_DELIVERY = 'pay_delivery';
 
     protected $fillable = [
         'user_id',
@@ -46,7 +55,9 @@ class Order extends Model
         'ship_user_note',
         'status_order',
         'status_payment',
-        'total_price'
+        'type_payment',
+        'total_price',
+        'order_sku'
     ];
 
     public function orderItems()

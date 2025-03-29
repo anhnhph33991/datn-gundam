@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('slug', 255)->unique();
             $table->string('sku', 255)->unique();
             $table->string('thumb_image', 500)->nullable();
-            $table->double('price_regular');
-            $table->double('price_sale')->nullable();
+            $table->decimal('price_regular',20,0)->default(0);
+            $table->decimal('price_sale',20,0)->default(0);
             $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->unsignedBigInteger('views')->default(0);
