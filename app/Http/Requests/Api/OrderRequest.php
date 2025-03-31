@@ -35,8 +35,9 @@ class OrderRequest extends FormRequest
             'ship_user_note'    => 'nullable|string|max:255',
             'status_order'      => 'required|in:pending,confirmed,preparing_goods,shipping,delivered,canceled',
             'status_payment'    => 'required|in:unpaid,paid,failed',
-            'type_payment'      => 'required|in:vnpay,momo,pay_delivery',
+            'type_payment'      => 'required|in:vnpay,momo,cod',
             'total_price'       => 'required|min:0',
+            'voucher_code'      => 'nullable'
         ];
     }
     

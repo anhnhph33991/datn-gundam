@@ -54,18 +54,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function addresses()
-    {
-        return $this->hasMany(UserAddresses::class);
-    }
-
-    public function socials()
-    {
-        return $this->hasMany(UserSocial::class);
-    }
-
     public function isAdmin()
     {
         return $this->role === self::ROLE_ADMIN;
+    }
+
+    public function user_vouchers()
+    {
+        return $this->hasMany(UserVoucher::class);
     }
 }

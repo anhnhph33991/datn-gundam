@@ -21,7 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
 
     //Đăng xuất
+
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    // Lấy thông tin người dùng
+    Route::get('user',[AuthController::class,'getUsers']);
 
     // Add to cart
     Route::prefix('carts')->middleware('CheckAuthCart')->group(function () {
@@ -50,10 +54,10 @@ Route::post('/signUp', [AuthController::class, 'signUp']);
 Route::post('/signIn', [AuthController::class, 'signIn']);
 
 // Sản phẩm nổi bật
-Route::get('/getTopProducts', [ProductController::class, 'getTopProducts']);
+// Route::get('/getTopProducts', [ProductController::class, 'getTopProducts']);
 
 // Danh sách sản phẩm
-Route::get('/getPagination', [ProductController::class, 'getPagination']);
+Route::get('/getAllProducts', [ProductController::class, 'getAllProducts']);
 
 // Chi tiết sản phẩm
 Route::get('{slug}/productDetail', [ProductController::class, 'productDetail']);

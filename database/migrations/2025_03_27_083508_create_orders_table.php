@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->boolean('same_as_buyer')->default(true);
             $table->string('order_sku');
-            $table->string('type_payment')->default(Order::TYPE_PAYMENT_PAY_DELIVERY);
+            $table->string('type_payment')->default(Order::TYPE_PAYMENT_COD);
 
             $table->string('ship_user_name', 255)->nullable();
             $table->string('ship_user_email', 255)->nullable();

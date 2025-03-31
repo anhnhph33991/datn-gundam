@@ -25,7 +25,7 @@ class Order extends Model
     public const TYPE_PAYMENT = [
         'vnpay'            => "VNPAY",
         'momo'             => "MOMO",
-        'pay_delivery'      => "Thanh toán khi nhận hàng"
+        'cod'              => "Thanh toán khi nhận hàng"
     ];
 
     public const STATUS_ORDER_PENDING = 'pending';
@@ -38,7 +38,7 @@ class Order extends Model
     public const STATUS_PAYMENT_PAID = 'paid';
     public const TYPE_PAYMENT_VNPAY = 'vnpay';
     public const TYPE_PAYMENT_MOMO = 'momo';
-    public const TYPE_PAYMENT_PAY_DELIVERY = 'pay_delivery';
+    public const TYPE_PAYMENT_COD = 'cod';
 
     protected $fillable = [
         'user_id',

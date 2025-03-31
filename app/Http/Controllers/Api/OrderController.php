@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\OrderRequest;
 use App\Models\Order;
+use App\Models\UserVoucher;
 use App\Services\Client\OrderService;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
@@ -21,13 +22,13 @@ class OrderController extends Controller
     {
         $this->orderService = $orderService;
     }
-    
+
     public function store(OrderRequest $orderRequest)
     {
         try {
             $data = $orderRequest->validated();
 
-            if ($data['type_payment'] === Order::TYPE_PAYMENT_PAY_DELIVERY) {
+            if ($data['type_payment'] === Order::TYPE_PAYMENT_COD) {
                 $Order = $this->orderService->storeService($data);
             }
 
@@ -73,6 +74,22 @@ class OrderController extends Controller
                 $orderData['data']['status_payment'] = Order::STATUS_PAYMENT_PAID;
                 // Log::info($orderData['data']);
                 $this->orderService->storeService($orderData['data']);
+
+                if (
+                    !empty($orderData['data']['voucher_code']) &&
+                    !empty($orderData['data']['voucher_id']) &&
+                    !empty($orderData['data']['user_id'])
+                ) {
+
+                    $userVoucher = UserVoucher::where('voucher_id', $orderData['data']['voucher_id'])
+                        ->where('user_id', $orderData['data']['user_id'])
+                        ->first();
+
+                    if ($userVoucher) {
+                        $userVoucher->decrement('usage_count', 1);
+                    }
+                }
+
             });
 
             Redis::del("order:$txnRef");

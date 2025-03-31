@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Models\User;
 use App\Services\Client\UserService;
 use App\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
@@ -106,5 +107,15 @@ class AuthController extends Controller
             Log::error('Logout error: ' . $e->getMessage());
             return $this->errorResponse('Lỗi hệ thống!', 500);
         }
+    }
+
+    // Lấy thông tin người dùng 
+
+    public function getUsers()
+    {
+        $user = User::with('user_vouchers.voucher')
+            ->findOrFail(request()->user()->id);
+
+        return $this->successResponse($user, 'Thao tác thành công !!!', Response::HTTP_OK);
     }
 }

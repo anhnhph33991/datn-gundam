@@ -22,15 +22,15 @@ class ProductController extends Controller
      *  Lấy ra top 5 sản phẩn nổi bật
      *  /api/v1/getTopProducts
      */
-    public function getTopProducts()
-    {
-        $products = $this->productService->getTopService(5);
-        return $this->successResponse(
-            $products,
-            'Thao tác thành công !!!',
-            Response::HTTP_OK
-        );
-    }
+    // public function getTopProducts()
+    // {
+    //     $products = $this->productService->getTopService(5);
+    //     return $this->successResponse(
+    //         $products,
+    //         'Thao tác thành công !!!',
+    //         Response::HTTP_OK
+    //     );
+    // }
     public function index()
     {
 
@@ -48,9 +48,9 @@ class ProductController extends Controller
      *  Danh sách sản phẩm
      *  /api/v1/getPagination
      */
-    public function getPagination()
+    public function getAllProducts()
     {
-        $products = $this->productService->getPaginationService(15);
+        $products = $this->productService->getAllService();
         return $this->successResponse(
             $products,
             'Thao tác thành công !!!',

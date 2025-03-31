@@ -44,6 +44,16 @@ class OrderService
     }
     public function paymentService(array $data)
     {
+        $CartItems = CartItem::with([
+            'productVariant.product',
+            'productVariant.color',
+            'productVariant.size'
+        ])->where('user_id', $data['user_id'])->get();
+
+        if ($CartItems->isEmpty()) {
+            throw new \Exception("Giỏ hàng của bạn đang trống.");
+        }
+
         $data['type_payment'] == 'momo' ? $paymentResult = $this->processPayment($data) : $paymentResult = $this->processVnPayPayment($data);
         
         if (!isset($paymentResult)) {
